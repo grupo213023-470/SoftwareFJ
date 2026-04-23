@@ -1,6 +1,6 @@
 from tkinter import *
 
-def abrir_servicios():
+def ventana_servicios():
 
     ventana = Toplevel()
     ventana.title("Servicios")

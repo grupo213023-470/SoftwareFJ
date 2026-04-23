@@ -51,7 +51,7 @@ class Logger:
 # =====================================================
 # VENTANA PARA MOSTRAR LOGS
 # =====================================================
-def abrir_logs():
+def ventana_logs():
 
     # Crear ventana secundaria
     ventana = Toplevel()

@@ -1,8 +1,8 @@
 from tkinter import *
-from clientes import abrir_clientes
-from servicios import abrir_servicios
-from reservas import abrir_reservas
-from logs import abrir_logs
+from clientes import ventana_clientes
+from servicios import ventana_servicios
+from reservas import ventana_reservas
+from logs import ventana_logs
 
 root = Tk()
 root.title("Sistema Software FJ")
@@ -19,7 +19,7 @@ Button(
     text="Clientes",
     width=25,
     height=2,
-    command=abrir_clientes
+    command=ventana_clientes 
 ).pack(pady=10)
 
 Button(
@@ -27,7 +27,7 @@ Button(
     text="Servicios",
     width=25,
     height=2,
-    command=abrir_servicios
+    command=ventana_servicios
 ).pack(pady=10)
 
 Button(
@@ -35,7 +35,7 @@ Button(
     text="Reservas",
     width=25,
     height=2,
-    command=abrir_reservas
+    command=ventana_reservas
 ).pack(pady=10)
 
 Button(
@@ -43,7 +43,7 @@ Button(
     text="Logs",
     width=25,
     height=2,
-    command=abrir_logs
+    command=ventana_logs
 ).pack(pady=10)
 
 

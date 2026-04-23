@@ -1,6 +1,6 @@
 from tkinter import *
 
-def abrir_reservas():
+def ventana_reservas():
 
     ventana = Toplevel()
     ventana.title("Reservas")
