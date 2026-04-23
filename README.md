@@ -1,6 +1,12 @@
 # SoftwareFJ
 # Sistema Integral de Gestión de Clientes, Servicios y Reservas
 
+## Índice
+* [Descripción](#descripción-del-proyecto)
+* [Objetivo General](#objetivo-general)
+* [Uso Registro de excepciones](#registro-de-excepciones)
+
+
 ## Descripción del Proyecto
 
 Este proyecto consiste en el desarrollo de un **Sistema Integral de Gestión de Clientes, Servicios y Reservas** para la Universidad Nacional Abierta y a Distancia - UNAD para el curso de Programación 213023A_2201 - Grupo 213023_470 - Periodo 16-01 - 2026, implementado en **Python** bajo el paradigma de **Programación Orientada a Objetos (POO)** y **sin uso de bases de datos**.
@@ -118,3 +124,19 @@ Se aplican estructuras como:
 try / except
 try / except / else
 try / except / finally
+```
+
+---
+
+## Registro de excepciones
+
+Ejemplo de uso:
+
+```python
+from logs import Logger
+
+try:
+    numero = int("abc")
+except Exception as e:
+    Logger.registrar_error(e, "Clientes", "Error al convertir edad")
+```
