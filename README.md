@@ -2,10 +2,13 @@
 # Sistema Integral de Gestión de Clientes, Servicios y Reservas
 
 ## Índice
-* [Descripción](#descripción-del-proyecto)
+* [Descripción del Proyecto](#descripción-del-proyecto) 
 * [Objetivo General](#objetivo-general)
-* [Uso Registro de excepciones](#registro-de-excepciones)
-
+* [Modulo Clientes](#modulo-clientes)
+* [Modulo Servicios ( sin asignar )](#modulo-servicios)
+* [Modulo Reservas ( sin asignar )](#modulo-reservas)
+* [Modulo Logs (Registro de excepciones)](#modulo-logs)
+  
 
 ## Descripción del Proyecto
 
@@ -33,11 +36,10 @@ Desarrollar una aplicación orientada a objetos capaz de gestionar clientes, ser
 
 ## Tecnologías Utilizadas
 
-- Python 3.x
+- Python 3.11.4
 - Programación Orientada a Objetos
-- Archivos `.txt` / `.log`
 - Manejo de excepciones
-- Consola / Interfaz gráfica (según implementación)
+- Interfaz gráfica usando Tkinter
 
 ---
 
@@ -56,55 +58,6 @@ Métodos sobrescritos para cálculos, validaciones y descripciones de servicios.
 Protección de atributos sensibles mediante getters, setters y validaciones internas.
 
 ---
-
-## Estructura del Sistema
-
-### Clase Abstracta Base
-Representa entidades generales del sistema.
-
-### Cliente
-Gestiona información personal del cliente:
-
-- Nombre
-- Documento
-- Teléfono
-- Correo electrónico
-
-Incluye validaciones estrictas.
-
-### Servicio (Clase Abstracta)
-
-Base para los servicios ofrecidos por Software FJ.
-
-#### Servicios Especializados
-
-- Reserva de salas
-- Alquiler de equipos
-- Asesorías especializadas
-
-Cada uno implementa:
-
-- Cálculo de costos
-- Descripción personalizada
-- Validación de parámetros
-
-### Reserva
-
-Relaciona:
-
-- Cliente
-- Servicio
-- Duración
-- Estado
-
-Funciones:
-
-- Confirmar reserva
-- Cancelar reserva
-- Procesar reserva
-
----
-
 ## Sobrecarga de Métodos
 
 El sistema incluye variantes de cálculo como:
@@ -125,18 +78,135 @@ try / except
 try / except / else
 try / except / finally
 ```
+---
+
+# Estructura del Sistema
+
+---
+### Modulo Clientes
+
+Módulo desarrollado en **Python + Tkinter** para la gestión de clientes dentro del sistema principal.
+
+## Funcionalidades
+
+- Registrar clientes
+- Editar clientes
+- Eliminar clientes
+- Buscar clientes
+- Ver detalle del cliente
+- Selección de país desde API externa
+- Validaciones de datos
+- Registro de eventos y errores en archivo logs
+
+## Programación Orientada a Objetos
+
+### Clase `Cliente`
+Representa la entidad cliente.
+
+**Encapsulación aplicada:**
+
+- `__id`
+- `__fecha`
+- `__nombre`
+- `__apellido`
+- `__documento`
+- `__correo`
+- `__telefono`
+
+Acceso controlado mediante `@property` y setters.
+
+### Clase `GestorClientes`
+
+Administra la lista en memoria de clientes.
+
+Métodos:
+
+- `agregar()`
+- `obtener()`
+- `obtener_todos()`
+- `eliminar()`
+- `buscar()`
+
+## Validaciones
+
+- Nombre obligatorio
+- Apellido obligatorio
+- Documento mínimo 6 caracteres
+- Teléfono mínimo 7 caracteres
+- Correo con formato válido
 
 ---
 
-## Registro de excepciones
+### Modulo Servicios (Clase Abstracta)
 
-Ejemplo de uso:
+Base para los servicios ofrecidos por Software FJ.
+
+#### Servicios Especializados
+
+- Reserva de salas
+- Alquiler de equipos
+- Asesorías especializadas
+
+Cada uno implementa:
+
+- Cálculo de costos
+- Descripción personalizada
+- Validación de parámetros
+
+---
+### Modulo Reserva
+
+Relaciona:
+
+- Cliente
+- Servicio
+- Duración
+- Estado
+
+Funciones:
+
+- Confirmar reserva
+- Cancelar reserva
+- Procesar reserva
+
+
+
+
+
+---
+
+### Modulo logs
+
+Gestiona el registro de eventos y errores del sistema, además de mostrar una ventana gráfica para consultar los logs.
+
+### Funciones principales
+
+- **Logger.registrar_evento(mensaje, modulo)**  
+  Guarda eventos normales del sistema en `logs.txt`.
+
+- **Logger.registrar_error(excepcion, modulo, detalle_extra)**  
+  Registra excepciones capturadas con información detallada.
+
+- **abrir_logs()**  
+  Abre una ventana modal en Tkinter para visualizar el archivo de logs, con opciones de:
+  - Actualizar registros
+  - Limpiar logs (con confirmación)
+  - Scroll vertical y horizontal
+
+### Archivo generado
+
+- **logs.txt**  
+  Contiene los registros en formato JSON, una línea por evento.
+
+### Ejemplo de uso
 
 ```python
-from logs import Logger
+from logs import Logger, abrir_logs
 
 try:
-    numero = int("abc")
+    x = int("abc")
 except Exception as e:
-    Logger.registrar_error(e, "Clientes", "Error al convertir edad")
+    Logger.registrar_error(e, "Clientes", "Conversión inválida")
+
+Logger.registrar_evento("Cliente Creado", "Clientes")
 ```
