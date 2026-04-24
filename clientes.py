@@ -1,18 +1,3 @@
-# clientes.py
-# ==========================================================
-# VERSIÓN MODERNIZADA COMPLETA
-# ----------------------------------------------------------
-# ✔ POO
-# ✔ Encapsulación
-# ✔ CRUD Clientes
-# ✔ Buscar en tiempo real
-# ✔ Tabla moderna
-# ✔ Enter cambia foco
-# ✔ Logs
-# ✔ Sin ventanas detalle duplicadas
-# ✔ Interfaz profesional
-# ==========================================================
-
 from tkinter import *
 from tkinter import ttk, messagebox
 from datetime import datetime
@@ -24,7 +9,7 @@ from logs import Logger
 # ==========================================================
 # EXCEPCIONES
 # ==========================================================
-class ErrorCliente(Exception):
+class ErrorCliente(Exception): 
     pass
 
 
@@ -120,7 +105,7 @@ class Cliente:
     @correo.setter
     def correo(self, valor):
 
-        patron = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+        patron = r'^[\w\.-]+@[\w\.-]+\.\w+$' # expresión regular básica para validar formato de correo
 
         if not re.match(patron, valor):
             raise ErrorCorreo("Correo inválido.")
@@ -168,18 +153,18 @@ class Cliente:
     def detalle(self):
 
         return f"""
-Nombre: {self.nombre}
-Apellido: {self.apellido}
-Documento: {self.documento}
-Correo: {self.correo}
-Teléfono: {self.telefono}
-Empresa: {self.empresa}
-Dirección: {self.direccion}
-Departamento: {self.departamento}
-Ciudad: {self.ciudad}
-País: {self.pais}
-Fecha Registro: {self.__fecha.strftime('%d/%m/%Y %H:%M:%S')}
-"""
+                Nombre: {self.nombre}
+                Apellido: {self.apellido}
+                Documento: {self.documento}
+                Correo: {self.correo}
+                Teléfono: {self.telefono}
+                Empresa: {self.empresa}
+                Dirección: {self.direccion}
+                Departamento: {self.departamento}
+                Ciudad: {self.ciudad}
+                País: {self.pais}
+                Fecha Registro: {self.__fecha.strftime('%d/%m/%Y %H:%M:%S')}
+                """
 
 
 # ==========================================================
@@ -364,15 +349,15 @@ def ventana_clientes():
 
                 ventanas_detalle[
                     cliente.id
-                ].lift()
+                ].lift() # trae la ventana al frente
 
                 return
 
-        v = Toplevel()
+        v = Toplevel() # nueva ventana para mostrar detalles
         v.title("Detalle Cliente")
-        v.geometry("430x430")
+        v.geometry("430x430") # tamaño fijo para evitar scroll
 
-        ventanas_detalle[cliente.id] = v
+        ventanas_detalle[cliente.id] = v  # guarda referencia para evitar múltiples ventanas
 
         Label(
             v,
@@ -390,7 +375,7 @@ def ventana_clientes():
     # ------------------------------------------------------
     def editar(indice):
 
-        cliente = GestorClientes.obtener(indice)
+        cliente = GestorClientes.obtener(indice) 
 
         v = Toplevel()
         v.title("Editar Cliente")
@@ -437,6 +422,7 @@ def ventana_clientes():
                     entradas["País"].get()
                 )
 
+                # registra evento de edición
                 Logger.registrar_evento(
                     "Clientes",
                     "Cliente editado"
@@ -548,8 +534,8 @@ def ventana_clientes():
         marco_buscar,
         width=35
     )
-    txt_buscar.pack(side=LEFT, padx=5)
-    txt_buscar.bind("<KeyRelease>", buscar)
+    txt_buscar.pack(side=LEFT, padx=5) # ENTER en el buscador filtra resultados
+    txt_buscar.bind("<KeyRelease>", buscar) # filtrar resultados al escribir
 
     Button(
         marco_buscar,
@@ -688,7 +674,7 @@ def ventana_clientes():
     ]
 
     for campo in campos:
-        campo.bind("<Return>", mover_foco)
+        campo.bind("<Return>", mover_foco) # ENTER mueve foco al siguiente campo
 
     combo_pais.bind(
         "<Return>",
