@@ -567,45 +567,39 @@ def ventana_clientes():
 
     Label(marco, text="Nombre", bg="white").grid(row=0, column=0, sticky="w")
     txt_nombre = Entry(marco, width=28)
-    txt_nombre.grid(row=0, column=1, padx=5)
+    txt_nombre.grid(row=0, column=1, padx=5, pady=10)
 
     Label(marco, text="Apellido", bg="white").grid(row=0, column=2, sticky="w")
     txt_apellido = Entry(marco, width=28)
-    txt_apellido.grid(row=0, column=3, padx=5)
+    txt_apellido.grid(row=0, column=3, padx=5, pady=10)
 
     Label(marco, text="Documento", bg="white").grid(row=1, column=0, sticky="w")
     txt_documento = Entry(marco, width=28)
-    txt_documento.grid(row=1, column=1, padx=5)
+    txt_documento.grid(row=1, column=1, padx=5, pady=10)
 
     Label(marco, text="Correo", bg="white").grid(row=1, column=2, sticky="w")
     txt_correo = Entry(marco, width=28)
-    txt_correo.grid(row=1, column=3, padx=5)
+    txt_correo.grid(row=1, column=3, padx=5, pady=10)
 
     Label(marco, text="Teléfono", bg="white").grid(row=2, column=0, sticky="w")
     txt_telefono = Entry(marco, width=28)
-    txt_telefono.grid(row=2, column=1, padx=5)
+    txt_telefono.grid(row=2, column=1, padx=5, pady=10)
 
     Label(marco, text="Empresa", bg="white").grid(row=2, column=2, sticky="w")
     txt_empresa = Entry(marco, width=28)
-    txt_empresa.grid(row=2, column=3, padx=5)
+    txt_empresa.grid(row=2, column=3, padx=5, pady=10)
 
     Label(marco, text="Dirección", bg="white").grid(row=3, column=0, sticky="w")
-    txt_direccion = Entry(marco, width=68)
-    txt_direccion.grid(
-        row=3,
-        column=1,
-        columnspan=3,
-        padx=5,
-        sticky="we"
-    )
+    txt_direccion = Entry(marco, width=28)
+    txt_direccion.grid(row=3, column=1, columnspan=3, padx=5,sticky="we",pady=10)
 
     Label(marco, text="Departamento", bg="white").grid(row=4, column=0, sticky="w")
     txt_departamento = Entry(marco, width=28)
-    txt_departamento.grid(row=4, column=1, padx=5)
+    txt_departamento.grid(row=4, column=1, padx=5, pady=10)
 
     Label(marco, text="Ciudad", bg="white").grid(row=4, column=2, sticky="w")
     txt_ciudad = Entry(marco, width=28)
-    txt_ciudad.grid(row=4, column=3, padx=5)
+    txt_ciudad.grid(row=4, column=3, padx=5, pady=10)
 
     Label(marco, text="País", bg="white").grid(row=5, column=0, sticky="w")
     combo_pais = ttk.Combobox(
@@ -613,7 +607,7 @@ def ventana_clientes():
         width=26,
         state="readonly"
     )
-    combo_pais.grid(row=5, column=1, padx=5)
+    combo_pais.grid(row=5, column=1, padx=5, pady=10)
 
     Button(
         ventana,
