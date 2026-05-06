@@ -559,12 +559,13 @@ def ventana_clientes():
         pady=10,
         fill="x"
     )
-
+    
     marco.grid_columnconfigure(0, minsize=90)
     marco.grid_columnconfigure(1, minsize=220)
     marco.grid_columnconfigure(2, minsize=90)
     marco.grid_columnconfigure(3, minsize=220)
-
+    
+    
     Label(marco, text="Nombre", bg="white").grid(row=0, column=0, sticky="w")
     txt_nombre = Entry(marco, width=28)
     txt_nombre.grid(row=0, column=1, padx=5, pady=10)
@@ -589,10 +590,10 @@ def ventana_clientes():
     txt_empresa = Entry(marco, width=28)
     txt_empresa.grid(row=2, column=3, padx=5, pady=10)
 
-    Label(marco, text="Dirección", bg="white").grid(row=3, column=0, sticky="w")
+    Label(marco, text="Dirección", bg="white").grid(row=3, column=0, columnspan=1, sticky="w")
     txt_direccion = Entry(marco, width=28)
-    txt_direccion.grid(row=3, column=1, columnspan=3, padx=5,sticky="we",pady=10)
-
+    txt_direccion.grid(row=3, column=1, columnspan=3, pady=10, padx=22, sticky="we")    
+    
     Label(marco, text="Departamento", bg="white").grid(row=4, column=0, sticky="w")
     txt_departamento = Entry(marco, width=28)
     txt_departamento.grid(row=4, column=1, padx=5, pady=10)
