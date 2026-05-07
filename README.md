@@ -8,7 +8,15 @@
 * [Modulo Servicios ( sin asignar )](#modulo-servicios)
 * [Modulo Reservas ( sin asignar )](#modulo-reservas)
 * [Modulo Logs (Registro de excepciones)](#modulo-logs)
-  
+
+
+## Integrantes del Proyecto
+
+- ARMANDO GUILLERMO TROUT GARCIA
+- JESUS DANIEL GUZMAN CARMONA
+
+## Tutora
+- Ing.  MAIRA ALEJANDRA DIAZ MEJIA  
 
 ## Descripción del Proyecto
 
@@ -45,17 +53,9 @@ Desarrollar una aplicación orientada a objetos capaz de gestionar clientes, ser
 
 ## Principios de POO Aplicados
 
-### Abstracción
-Uso de clases abstractas para definir estructuras generales del sistema.
+Abstracción, Herencia, Polimorfismo, Encapsulación.
 
-### Herencia
-Clases derivadas que especializan comportamientos comunes.
 
-### Polimorfismo
-Métodos sobrescritos para cálculos, validaciones y descripciones de servicios.
-
-### Encapsulación
-Protección de atributos sensibles mediante getters, setters y validaciones internas.
 
 ---
 ## Sobrecarga de Métodos
