@@ -4,6 +4,9 @@ from datetime import datetime
 from logs import Logger
 
 
+# ==========================================================
+# EXCEPCIONES PERSONALIZADAS
+# ==========================================================
 class ErrorReserva(Exception):
     pass
 
@@ -12,6 +15,9 @@ class ErrorDuracion(ErrorReserva):
     pass
 
 
+# ==========================================================
+# CLASE RESERVA
+# ==========================================================
 class Reserva:
 
     contador = 1
@@ -68,12 +74,28 @@ class Reserva:
             raise ErrorDuracion("Las horas deben ser un número entero.") from error
 
     def confirmar(self):
+        if self.estado == "Cancelada":
+            raise ErrorReserva("No se puede confirmar una reserva cancelada.")
         self.estado = "Confirmada"
 
     def cancelar(self):
+        if self.estado in ["Confirmada", "Procesada"]:
+            raise ErrorReserva(
+                "No se puede cancelar una reserva confirmada o procesada."
+            )
+
         self.estado = "Cancelada"
 
+    def procesar(self):
+        if self.estado == "Cancelada":
+            raise ErrorReserva("No se puede procesar una reserva cancelada.")
 
+        self.estado = "Procesada"
+
+
+# ==========================================================
+# GESTOR DE RESERVAS
+# ==========================================================
 class GestorReservas:
 
     __lista = []
@@ -95,6 +117,9 @@ class GestorReservas:
         del cls.__lista[indice]
 
 
+# ==========================================================
+# VENTANA RESERVAS
+# ==========================================================
 def ventana_reservas():
 
     def limpiar():
@@ -118,6 +143,7 @@ def ventana_reservas():
                     reserva.estado,
                     "Confirmar",
                     "Cancelar",
+                    "Procesar",
                     "Eliminar"
                 )
             )
@@ -188,6 +214,14 @@ def ventana_reservas():
                 )
 
             elif columna == "#8":
+                reserva.procesar()
+
+                Logger.registrar_evento(
+                    "Reserva procesada",
+                    "Reservas"
+                )
+
+            elif columna == "#9":
                 GestorReservas.eliminar(indice)
 
                 Logger.registrar_evento(
@@ -208,7 +242,7 @@ def ventana_reservas():
 
     ventana = Toplevel()
     ventana.title("Reservas")
-    ventana.geometry("950x580")
+    ventana.geometry("1050x580")
     ventana.configure(bg="#f4f6f8")
 
     Label(
@@ -261,6 +295,7 @@ def ventana_reservas():
         "Estado",
         "Confirmar",
         "Cancelar",
+        "Procesar",
         "Eliminar"
     )
 
@@ -281,6 +316,7 @@ def ventana_reservas():
     tabla.column("Estado", width=120)
     tabla.column("Confirmar", width=100)
     tabla.column("Cancelar", width=100)
+    tabla.column("Procesar", width=100)
     tabla.column("Eliminar", width=100)
 
     tabla.pack(
