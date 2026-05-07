@@ -210,3 +210,33 @@ except Exception as e:
 
 Logger.registrar_evento("Cliente Creado", "Clientes")
 ```
+## Actualización - Jesús Daniel Guzmán Carmona
+
+Durante esta actualización del proyecto se realizaron mejoras en los módulos de Servicios y Reservas del sistema Software FJ.
+
+### Mejoras implementadas
+- Validación de campos obligatorios.
+- Validación de precios y horas con valores numéricos positivos.
+- Manejo de excepciones personalizadas.
+- Implementación de mensajes de error amigables para el usuario.
+- Registro automático de eventos y errores mediante el sistema de logs.
+- Mejoras visuales en la interfaz gráfica desarrollada con Tkinter.
+- Implementación de acciones de confirmar, cancelar y eliminar reservas.
+
+### Pruebas realizadas
+Se realizaron pruebas funcionales y validaciones de:
+- Campos vacíos.
+- Datos inválidos.
+- Valores negativos.
+- Confirmación y cancelación de reservas.
+- Registro correcto de eventos en logs.
+
+### Tecnologías utilizadas
+- Python
+- Tkinter
+- Programación Orientada a Objetos (POO)
+- Git y GitHub para control de versiones colaborativo
+
+## Evidencia de rama Jesús Guzmán
+
+Esta sección fue agregada desde la rama `rama-jesus-guzman` para evidenciar el trabajo colaborativo mediante ramas, commits y Pull Request.
