@@ -60,9 +60,12 @@ class Servicio(ABC):
     def precio_base(self, valor):
         try:
             valor = float(valor)
+
             if valor <= 0:
                 raise ErrorPrecio("El precio debe ser mayor que cero.")
+
             self.__precio_base = valor
+
         except ValueError as error:
             raise ErrorPrecio("El precio debe ser un número válido.") from error
 
@@ -86,6 +89,19 @@ class Servicio(ABC):
         if not self.disponible:
             raise ErrorDisponibilidad("El servicio no está disponible.")
 
+    def validar_parametros_costo(self, duracion, descuento, impuesto):
+        """
+        Valida los parámetros usados para calcular el costo del servicio.
+        """
+        if duracion <= 0:
+            raise ErrorServicio("La duración debe ser mayor que cero.")
+
+        if descuento < 0:
+            raise ErrorServicio("El descuento no puede ser negativo.")
+
+        if impuesto < 0:
+            raise ErrorServicio("El impuesto no puede ser negativo.")
+
 
 # ==========================================================
 # SERVICIO 1: RESERVA DE SALA
@@ -104,17 +120,23 @@ class ReservaSala(Servicio):
     def capacidad(self, valor):
         try:
             valor = int(valor)
+
             if valor <= 0:
                 raise ErrorServicio("La capacidad debe ser mayor que cero.")
+
             self.__capacidad = valor
+
         except ValueError as error:
             raise ErrorServicio("La capacidad debe ser un número entero.") from error
 
     def calcular_costo(self, duracion=1, descuento=0, impuesto=0):
         self.validar_disponibilidad()
+        self.validar_parametros_costo(duracion, descuento, impuesto)
+
         costo = self.precio_base * duracion
         costo -= costo * (descuento / 100)
         costo += costo * (impuesto / 100)
+
         return costo
 
     def descripcion(self):
@@ -142,9 +164,12 @@ class AlquilerEquipo(Servicio):
 
     def calcular_costo(self, duracion=1, descuento=0, impuesto=0):
         self.validar_disponibilidad()
+        self.validar_parametros_costo(duracion, descuento, impuesto)
+
         costo = self.precio_base * duracion
         costo -= costo * (descuento / 100)
         costo += costo * (impuesto / 100)
+
         return costo
 
     def descripcion(self):
@@ -172,9 +197,12 @@ class AsesoriaEspecializada(Servicio):
 
     def calcular_costo(self, duracion=1, descuento=0, impuesto=0):
         self.validar_disponibilidad()
+        self.validar_parametros_costo(duracion, descuento, impuesto)
+
         costo = self.precio_base * duracion
         costo -= costo * (descuento / 100)
         costo += costo * (impuesto / 100)
+
         return costo
 
     def descripcion(self):
@@ -325,8 +353,15 @@ def ventana_servicios():
             mensaje = (
                 f"{servicio.descripcion()}\n\n"
                 f"Precio base: ${servicio.precio_base:,.0f}\n"
-                f"Costo ejemplo por 2 horas con 5% descuento "
-                f"e impuesto 19%: ${costo:,.0f}"
+                f"Duración evaluada: 2 horas\n"
+                f"Descuento aplicado: 5%\n"
+                f"Impuesto aplicado: 19%\n"
+                f"Costo final calculado: ${costo:,.0f}"
+            )
+
+            Logger.registrar_evento(
+                "Consulta de costo realizada correctamente",
+                "Servicios"
             )
 
             messagebox.showinfo("Detalle Servicio", mensaje)
